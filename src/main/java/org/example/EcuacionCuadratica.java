@@ -2,7 +2,7 @@ package org.example;
 
 public class EcuacionCuadratica {
 
-    public static double[] resolver(double[] coeficientes) {
+    public static double[] resolverEcuacionCuadratica(double[] coeficientes) {
         if (coeficientes.length != 3) {
             throw new IllegalArgumentException("Se esperan exactamente 3 coeficientes");
         }
