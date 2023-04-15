@@ -2,7 +2,7 @@ package org.example;
 
 public class EcuacionRecta {
 
-    public static double[] calcularEcuacionRecta(double[] puntoInicial, double[] puntoFinal) {
+    public static double[] resolverEcuacionRecta(double[] puntoInicial, double[] puntoFinal) {
         if (puntoInicial[0] == puntoFinal[0]) {
             throw new ArithmeticException("Los puntos tienen la misma coordenada X, no se puede calcular la recta");
         }
