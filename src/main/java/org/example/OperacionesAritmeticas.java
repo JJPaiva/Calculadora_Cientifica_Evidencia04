@@ -6,7 +6,7 @@ public class OperacionesAritmeticas {
         SUMA, RESTA, MULTIPLICACION, DIVISION, MAXIMO, MINIMO, POTENCIA, PORCENTAJE
     }
 
-    public static double calcular(Operacion operacion, double[] valores) {
+    public static double resolverOperacionesAritmeticas(Operacion operacion, double[] valores) {
         double resultado = 0;
 
         switch (operacion) {
