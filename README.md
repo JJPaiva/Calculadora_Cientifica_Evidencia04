@@ -1,1 +1,0 @@
-# Calculadora_Cientifica_Evidencia04
