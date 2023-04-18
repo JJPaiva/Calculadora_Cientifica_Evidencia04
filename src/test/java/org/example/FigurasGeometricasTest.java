@@ -1,43 +1,61 @@
 package org.example;
 
-public class FigurasGeometricas {
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.example.FigurasGeometricas.Figura;
 
-    public enum Figura {
-        CUADRADO, RECTANGULO, CIRCULO, ESFERA, CUBO, CONO
+class FigurasGeometricasTest {
+
+    @Test
+    void testResolverFigurasGeometricas_cuadrado() {
+        double[] resultadosEsperados = {16, 16};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.CUADRADO, 4);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
     }
-    public static double[] resolverFigurasGeometricas(Figura figura, double... parametros) {
-        double[] resultados;
 
-        switch (figura) {
-            case CUADRADO:
-                //Lado
-                resultados = new double[] { 4 * parametros[0], parametros[0] * parametros[0] };
-                break;
-            case RECTANGULO:
-                //Longitud,anchura
-                resultados = new double[] { 2 * (parametros[0] + parametros[1]), parametros[0] * parametros[1] };
-                break;
-            case CIRCULO:
-                //Radio
-                resultados = new double[] { 2 * Math.PI * parametros[0], Math.PI * parametros[0] * parametros[0] };
-                break;
-            case ESFERA:
-                //Radio
-                resultados = new double[] { 4 * Math.PI * Math.pow(parametros[0], 2), (4.0 / 3.0) * Math.PI * Math.pow(parametros[0], 3) };
-                break;
-                //Lado
-            case CUBO:
-                resultados = new double[] { 12 * parametros[0], 6 * parametros[0] * parametros[0], Math.pow(parametros[0], 3) };
-                break;
-            case CONO:
-                double slantHeight = Math.sqrt(Math.pow(parametros[0], 2) + Math.pow(parametros[1], 2));
-                double areaLateral = (Math.PI * parametros[0] * slantHeight) / 2;
-                //Radio, altura
-                resultados = new double[] { Math.PI * parametros[0] * (parametros[0] + slantHeight), areaLateral + Math.PI * parametros[0] * parametros[0], (1.0 / 3.0) * Math.PI * Math.pow(parametros[0], 2) * parametros[1] };
-                break;
-            default:
-                throw new IllegalArgumentException("Opción de figura no válida");
-        }
-        return resultados;
+    @Test
+    void testResolverFigurasGeometricas_rectangulo() {
+        double[] resultadosEsperados = {18, 20};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.RECTANGULO, 4, 5);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
+    }
+
+    @Test
+    void testResolverFigurasGeometricas_circulo() {
+        double[] resultadosEsperados = {12.566370614359172, 12.566370614359172};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.CIRCULO, 2);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
+    }
+
+    @Test
+    void testResolverFigurasGeometricas_esfera() {
+        double[] resultadosEsperados = {50.26548245743669, 33.510321638291124};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.ESFERA, 2);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
+    }
+
+    @Test
+    void testResolverFigurasGeometricas_cubo() {
+        double[] resultadosEsperados = {48, 96, 64};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.CUBO, 4);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
+    }
+
+    @Test
+    void testResolverFigurasGeometricas_cono() {
+        double[] resultadosEsperados = {45.97812434112497, 57.97812434112497, 25.132741228718345};
+        double[] resultadosObtenidos = FigurasGeometricas.resolverFigurasGeometricas(Figura.CONO, 3, 4);
+
+        assertArrayEquals(resultadosEsperados, resultadosObtenidos, 1e-6);
+    }
+
+    @Test
+    void testResolverFigurasGeometricas_figuraInvalida() {
+        assertThrows(IllegalArgumentException.class, () -> FigurasGeometricas.resolverFigurasGeometricas(null));
     }
 }
